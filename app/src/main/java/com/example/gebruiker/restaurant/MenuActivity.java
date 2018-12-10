@@ -46,8 +46,18 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
         Log.d("test", "gotMenu: hoi");
         ListView lv = findViewById(R.id.menu_view);
         lv.setAdapter(adapter);
-        // TODO onitemclicklistener
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MenuItem clicked_item = (MenuItem) parent.getItemAtPosition(position);
+                Intent intent = new Intent(MenuActivity.this, MenuItemActivity.class);
+
+                // TODO vragen, zoiets was ook in journal
+                intent.putExtra("clicked_item", clicked_item);
+                startActivity(intent);
+            }
+        });
 
     }
 

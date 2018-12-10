@@ -54,8 +54,6 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
             e.printStackTrace();
         }
 
-        // todo alleen voor de categorie waarop geklikt is??
-
         ArrayList<MenuItem> actual_menu = new ArrayList<MenuItem>(menu.length());
         for (int position = 0; position < menu.length(); position++) {
             try {
