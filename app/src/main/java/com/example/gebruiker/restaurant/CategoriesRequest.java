@@ -29,6 +29,7 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
         this.context = context;
     }
 
+    // gets JSONObject from URL
     void getCategories(Callback activity) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -48,6 +49,8 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
 
     @Override
     public void onResponse(JSONObject response) {
+
+        // gets the JSONArray
         JSONArray categories = null;
         try {
             categories = response.getJSONArray("categories");

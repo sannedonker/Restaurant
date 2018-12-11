@@ -37,10 +37,12 @@ public class CategoriesActivity extends AppCompatActivity implements CategoriesR
     public void gotCategories(ArrayList<String> categories) {
         Toast.makeText(this,categories.get(0),Toast.LENGTH_LONG).show();
 
+        // set the categories in the listview
         category_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
         ListView lv = findViewById(R.id.categories_view);
         lv.setAdapter(category_adapter);
 
+        // collects the necessary info of the clicked category and sends it to MenuActivity
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

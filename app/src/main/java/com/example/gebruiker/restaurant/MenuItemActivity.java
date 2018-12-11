@@ -21,6 +21,7 @@ public class MenuItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_item);
 
+        // collects the received info and sets the text and image views
         Intent intent = getIntent();
         clicked_item = (MenuItem) intent.getSerializableExtra("clicked_item");
         ((TextView)findViewById(R.id.detail_name)).setText(clicked_item.getName());
@@ -30,7 +31,7 @@ public class MenuItemActivity extends AppCompatActivity {
         Picasso.with(context).load(clicked_item.getImageUrl()).into(imageView);
     }
 
-    // makes sure that when pressed back the user goes to the ChooseActivity screen
+    // makes sure that when pressed back the user goes to the MenuActivity screen
     @Override
     public void onBackPressed()
     {

@@ -22,11 +22,13 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        // get the clicked category
         Intent intent = getIntent();
         clicked_category = intent.getStringExtra("clicked_category");
 
-        MenuRequest test = new MenuRequest(this);
-        test.getMenu(this);
+        // instantiate menurequest
+        MenuRequest menu = new MenuRequest(this);
+        menu.getMenu(this);
     }
 
     @Override
@@ -41,19 +43,18 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
             }
         }
 
-
+        // set the listview with the correct items
         MenuAdapter adapter = new MenuAdapter(this, R.layout.menu_item, category_items);
         Log.d("test", "gotMenu: hoi");
         ListView lv = findViewById(R.id.menu_view);
         lv.setAdapter(adapter);
 
+        // sends clicked item to MenuItemActivity
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MenuItem clicked_item = (MenuItem) parent.getItemAtPosition(position);
                 Intent intent = new Intent(MenuActivity.this, MenuItemActivity.class);
-
-                // TODO vragen, zoiets was ook in journal
                 intent.putExtra("clicked_item", clicked_item);
                 startActivity(intent);
             }

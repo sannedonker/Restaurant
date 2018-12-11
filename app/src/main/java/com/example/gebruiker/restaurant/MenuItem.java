@@ -1,6 +1,8 @@
 package com.example.gebruiker.restaurant;
 
-public class MenuItem {
+import java.io.Serializable;
+
+public class MenuItem implements Serializable {
     private String name, description, imageUrl, category;
     private float price;
 

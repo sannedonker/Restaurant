@@ -20,7 +20,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
     Callback activity;
     Context context;
 
-//    constructor
+    // constructor
     public MenuRequest(Context context) {
         this.context = context;
     }
@@ -30,11 +30,13 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
         void gotMenuError(String message);
     }
 
+    // gets JSONObject from URL
     void getMenu(Callback activity) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
         JsonObjectRequest jsonObjectRequest =
-                new JsonObjectRequest("https://resto.mprog.nl/menu", null, MenuRequest.this, MenuRequest.this);
+                new JsonObjectRequest("https://resto.mprog.nl/menu", null,
+                        MenuRequest.this, MenuRequest.this);
         queue.add(jsonObjectRequest);
 
         this.activity = activity;
@@ -47,6 +49,10 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
 
     @Override
     public void onResponse(JSONObject response) {
+
+        // TODO: hier maar één try en catch van maken????
+
+        // gets the JSONArray
         JSONArray menu = null;
         try {
             menu = response.getJSONArray("items");
@@ -54,6 +60,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
             e.printStackTrace();
         }
 
+        // gets the info out of the JSONObject and add it as an MenuItem to an ArrayList
         ArrayList<MenuItem> actual_menu = new ArrayList<MenuItem>(menu.length());
         for (int position = 0; position < menu.length(); position++) {
             try {
