@@ -1,7 +1,6 @@
 package com.example.gebruiker.restaurant;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,14 +42,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
     }
 
     @Override
-    public void onErrorResponse(VolleyError error) {
-        activity.gotMenuError(error.getMessage());
-    }
-
-    @Override
     public void onResponse(JSONObject response) {
-
-        // TODO: hier maar één try en catch van maken????
 
         // gets the JSONArray
         JSONArray menu = null;
@@ -71,9 +63,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
                 String category = menu_list.getString("category");
                 float price = BigDecimal.valueOf(menu_list.getDouble("price")).floatValue();
                 actual_menu.add(new MenuItem(name, description, imageUrl, category, price));
-                Log.d("test", "onResponse: fijn dat ik hier kom TWEE");
             } catch (JSONException e) {
-                Log.d("test", "onResponse: help print iets");
                 e.printStackTrace();
             }
         }
@@ -82,4 +72,8 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
 
     }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        activity.gotMenuError(error.getMessage());
+    }
 }

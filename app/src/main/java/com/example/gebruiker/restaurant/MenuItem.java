@@ -3,6 +3,7 @@ package com.example.gebruiker.restaurant;
 import java.io.Serializable;
 
 public class MenuItem implements Serializable {
+
     private String name, description, imageUrl, category;
     private float price;
 
@@ -41,14 +42,6 @@ public class MenuItem implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public void setPrice(float price) {

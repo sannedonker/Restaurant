@@ -42,12 +42,6 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
     }
 
     @Override
-    public void onErrorResponse(VolleyError error) {
-        activity.gotCategoriesError(error.getMessage());
-
-    }
-
-    @Override
     public void onResponse(JSONObject response) {
 
         // gets the JSONArray
@@ -58,6 +52,7 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
             e.printStackTrace();
         }
 
+        // gets the categories out of the JSONArray
         ArrayList<String> actual_categories = new ArrayList<>(categories.length());
         for (int position = 0; position < categories.length(); position++) {
 
@@ -72,5 +67,11 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
         }
 
         activity.gotCategories(actual_categories);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        activity.gotCategoriesError(error.getMessage());
+
     }
 }

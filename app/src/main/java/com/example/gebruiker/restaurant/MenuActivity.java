@@ -39,13 +39,11 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
         for (int position = 0; position < item.size(); position++) {
             if (item.get(position).getCategory().equals(clicked_category)) {
                 category_items.add(item.get(position));
-                Log.d("adapter", "pleaaseeee NIEUW");
             }
         }
 
         // set the listview with the correct items
         MenuAdapter adapter = new MenuAdapter(this, R.layout.menu_item, category_items);
-        Log.d("test", "gotMenu: hoi");
         ListView lv = findViewById(R.id.menu_view);
         lv.setAdapter(adapter);
 

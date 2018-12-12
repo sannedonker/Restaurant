@@ -9,13 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MenuAdapter extends ArrayAdapter {
 
@@ -27,23 +25,21 @@ public class MenuAdapter extends ArrayAdapter {
         super(context, resource, menu_items);
         this.menu_items = menu_items;
         this.context = context;
-        Log.d("test", "MenuAdapter: kom ik hier?");
     }
 
     public View getView(int position, View lv, ViewGroup parent) {
-
-        Log.d("test", "Ik wil heel graag dit zien");
 
         // loads new items
         if (lv == null) {
             lv = LayoutInflater.from(getContext()).inflate(R.layout.menu_item, parent, false);
         }
 
+        // sets menuItems in the listview
         MenuItem item = menu_items.get(position);
         ImageView imageView = lv.findViewById(R.id.item_image);
         Picasso.with(context).load(item.getImageUrl()).into(imageView);
         ((TextView) lv.findViewById(R.id.item)).setText(item.getName());
-        ((TextView) lv.findViewById(R.id.price)).setText("€ " + item.getPrice());
+        ((TextView) lv.findViewById(R.id.price)).setText("€ " + item.getPrice() + "0");
 
         return lv;
     }

@@ -13,29 +13,19 @@ import java.util.ArrayList;
 
 public class CategoriesActivity extends AppCompatActivity implements CategoriesRequest.Callback  {
 
-    private ArrayList<String> categories = new ArrayList<>();
     private ArrayAdapter<String> category_adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-        CategoriesRequest x = new CategoriesRequest(this);
-        x.getCategories(this);
-        Toast.makeText(this,"Started",Toast.LENGTH_SHORT).show();
 
-//        // instantiate the adapter and attach the adapter to the gridview
-//        CategoriesAdapter adapter = new CategoriesAdapter(this, R.layout.activity_categories, categories);
-//        ListView lv = findViewById(R.id.categories_view);
-//        lv.setAdapter(adapter);
-//        lv.setOnItemClickListener(new ListItemClickListener());
-
+        CategoriesRequest category = new CategoriesRequest(this);
+        category.getCategories(this);
     }
 
     @Override
     public void gotCategories(ArrayList<String> categories) {
-        Toast.makeText(this,categories.get(0),Toast.LENGTH_LONG).show();
 
         // set the categories in the listview
         category_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
@@ -53,7 +43,6 @@ public class CategoriesActivity extends AppCompatActivity implements CategoriesR
             }
         });
     }
-
 
     @Override
     public void gotCategoriesError(String message) {

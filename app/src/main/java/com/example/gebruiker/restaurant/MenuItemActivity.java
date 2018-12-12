@@ -14,8 +14,6 @@ public class MenuItemActivity extends AppCompatActivity {
     MenuItem clicked_item;
     Context context;
 
-    //TODO kijken of context klopt??????
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +24,9 @@ public class MenuItemActivity extends AppCompatActivity {
         clicked_item = (MenuItem) intent.getSerializableExtra("clicked_item");
         ((TextView)findViewById(R.id.detail_name)).setText(clicked_item.getName());
         ((TextView)findViewById(R.id.detail_description)).setText(clicked_item.getDescription());
-        ((TextView)findViewById(R.id.detail_price)).setText("€ " + clicked_item.getPrice());
+        ((TextView)findViewById(R.id.detail_price)).setText("€ " + clicked_item.getPrice() + "0");
         ImageView imageView = findViewById(R.id.detail_image);
         Picasso.with(context).load(clicked_item.getImageUrl()).into(imageView);
-    }
-
-    // makes sure that when pressed back the user goes to the MenuActivity screen
-    @Override
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(MenuItemActivity.this, MenuActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 
 }
